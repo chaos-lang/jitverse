@@ -1,0 +1,3 @@
+[submodule "myjit/myjit"]
+	path = myjit/myjit
+	url = https://github.com/chaos-lang/myjit.git

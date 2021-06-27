@@ -1,6 +1,11 @@
 build: build-fib
 
-build-fib: build-fib-gcc build-fib-nasm build-fib-libgccjit build-fib-gnu-lightning build-fib-myjit build-fib-libjit
+build-fib: build-fib-gcc \
+	build-fib-nasm \
+	build-fib-libgccjit \
+	build-fib-gnu-lightning \
+	build-fib-myjit \
+	build-fib-libjit
 
 build-fib-gcc:
 	cd gcc && \
@@ -28,16 +33,17 @@ build-fib-myjit:
 
 build-fib-libjit:
 	cd libjit/libjit/ && \
-  ./bootstrap &&\
-  ./configure &&\
-  ${MAKE}
+	./bootstrap &&\
+	./configure &&\
+	make
 	cd libjit/ && \
-	${CC} -O3 -o fib -Ilibjit/jit -L libjit/jit/.libs fib.c -ljit
+	gcc -O3 -o fib fib.c libjit/jit/.libs/libjit.a -lm -pthread
 
 bench: bench-fib
 
 bench-fib:
 	hyperfine --warmup 3 \
+		'./libjit/fib' \
 		'./libgccjit/toyvm ./libgccjit/fibonacci.toy 42' \
 		'./gnu_lightning/fib' \
 		'./myjit/fib' \
@@ -49,6 +55,7 @@ validate: validate-fib
 
 validate-fib:
 	echo "fib(42)" && \
+	./libjit/fib \
 	./libgccjit/toyvm ./libgccjit/fibonacci.toy 42 && \
 	./gnu_lightning/fib && \
 	./myjit/fib \

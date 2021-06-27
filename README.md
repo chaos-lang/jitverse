@@ -10,11 +10,11 @@ All the JITs in the universe compared based on:
 
 ## Performance
 
-| Algorithm   | LibJIT     | libgccjit            | MCJIT       | AsmJit      | DynASM      | QBE     | MIR    | GNU Lightning        | MyJit                 | GCC                   | NASM                 |
-| ----------- | ---------- | -------------------- | ----------- | ----------- | ----------- | ------- | ------ | -------------------- | --------------------- | --------------------- | -------------------- |
-| `fib(42)`   | -          | 536.2 ms ±   5.9 ms  | -           | -           | -           | -       | -      | 1.331 s ±  0.005 s   | 1.807 s ±  0.072 s    | 765.5 ms ±  21.8 ms   | 792.1 ms ±   5.4 ms  |
+| Algorithm   | LibJIT              | libgccjit            | MCJIT       | AsmJit      | DynASM      | QBE     | MIR    | GNU Lightning        | MyJit                 | GCC                   | NASM                 |
+| ----------- | ------------------- | -------------------- | ----------- | ----------- | ----------- | ------- | ------ | -------------------- | --------------------- | --------------------- | -------------------- |
+| `fib(42)`   | 1.541 s ±  0.012 s  | 538.0 ms ±   5.3 ms  | -           | -           | -           | -       | -      | 1.344 s ±  0.007 s   | 1.809 s ±  0.067 s    | 769.5 ms ±  22.1 ms   | 803.6 ms ±  12.0 ms  |
 
-*Lower is better. Mean elapsed time against 10 runs.*
+*Mean elapsed time against 10 runs. Lower is better.*
 
 *`fib(42)` is the recursive Fibonacci sequence algorithm.*
 
@@ -26,9 +26,10 @@ All the JITs in the universe compared based on:
 Summary
   './libgccjit/toyvm ./libgccjit/fibonacci.toy 42' ran
     1.43 ± 0.04 times faster than './gcc/fib'
-    1.48 ± 0.02 times faster than './nasm/fib'
-    2.48 ± 0.03 times faster than './gnu_lightning/fib'
-    3.37 ± 0.14 times faster than './myjit/fib'
+    1.49 ± 0.03 times faster than './nasm/fib'
+    2.50 ± 0.03 times faster than './gnu_lightning/fib'
+    2.87 ± 0.04 times faster than './libjit/fib'
+    3.36 ± 0.13 times faster than './myjit/fib'
 ```
 
 Peformed using:

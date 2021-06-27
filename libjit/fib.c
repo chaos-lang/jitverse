@@ -1,4 +1,4 @@
-#include <jit/jit.h>
+#include "libjit/include/jit/jit.h"
 
 static jit_value_t call_fib(jit_function_t function, const jit_value_t n, const jit_value_t sub) {
   jit_value_t temp = jit_insn_sub(function, n, sub);
@@ -44,7 +44,7 @@ int main() {
 
   jit_context_build_end(context);
 
-  call(function, 40);
+  call(function, 42);
 
   jit_context_destroy(context);
 }

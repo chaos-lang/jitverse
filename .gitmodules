@@ -1,3 +1,6 @@
 [submodule "myjit/myjit"]
 	path = myjit/myjit
 	url = https://github.com/chaos-lang/myjit.git
+[submodule "libjit/libjit"]
+	path = libjit/libjit
+	url = https://git.savannah.gnu.org/git/libjit.git

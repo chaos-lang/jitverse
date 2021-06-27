@@ -1,6 +1,6 @@
 build: build-fib
 
-build-fib: build-fib-gcc build-fib-nasm build-fib-libgccjit build-fib-gnu-lightning build-fib-myjit
+build-fib: build-fib-gcc build-fib-nasm build-fib-libgccjit build-fib-gnu-lightning build-fib-myjit build-fib-libjit
 
 build-fib-gcc:
 	cd gcc && \
@@ -26,6 +26,13 @@ build-fib-myjit:
 	gcc -O2 -c -g -Winline -Wall -std=c99 -pedantic -D_XOPEN_SOURCE=600 fib.c && \
 	gcc -O2 -o fib -g -Wall -std=c99 -pedantic fib.o myjit/jitlib-core.o -ldl
 
+build-fib-libjit:
+	cd libjit/libjit/ && \
+  ./bootstrap &&\
+  ./configure &&\
+  ${MAKE}
+	cd libjit/ && \
+	${CC} -O3 -o fib -Ilibjit/jit -L libjit/jit/.libs fib.c -ljit
 
 bench: bench-fib
 

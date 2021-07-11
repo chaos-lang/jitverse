@@ -39,11 +39,16 @@ build-fib-libjit:
 	cd libjit/ && \
 	gcc -O3 -o fib fib.c libjit/jit/.libs/libjit.a -lm -pthread
 
+build-fib-mir:
+	cd mir/ && \
+	gcc -O3 -o fib fib-mir.c -lmir -lpthread
+
 bench: bench-fib
 
 bench-fib:
 	hyperfine --warmup 3 \
 		'./libjit/fib' \
+		'./mir/fib' \
 		'./libgccjit/toyvm ./libgccjit/fibonacci.toy 42' \
 		'./gnu_lightning/fib' \
 		'./myjit/fib' \

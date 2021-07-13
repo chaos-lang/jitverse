@@ -10,9 +10,9 @@ All the JITs in the universe compared based on:
 
 ## Performance
 
-| Algorithm   | LibJIT              | libgccjit            | MCJIT       | AsmJit      | DynASM      | QBE     | MIR    | GNU Lightning        | MyJit                 | GCC                   | NASM                 |
-| ----------- | ------------------- | -------------------- | ----------- | ----------- | ----------- | ------- | ------ | -------------------- | --------------------- | --------------------- | -------------------- |
-| `fib(42)`   | 1.541 s ±  0.012 s  | 538.0 ms ±   5.3 ms  | -           | -           | -           | -       | -      | 1.344 s ±  0.007 s   | 1.809 s ±  0.067 s    | 769.5 ms ±  22.1 ms   | 803.6 ms ±  12.0 ms  |
+| Algorithm   | LibJIT              | libgccjit            | MCJIT       | AsmJit      | DynASM      | QBE     | MIR                 | GNU Lightning        | MyJit                 | GCC                   | NASM                 |
+| ----------- | ------------------- | -------------------- | ----------- | ----------- | ----------- | ------- | ------------------- | -------------------- | --------------------- | --------------------- | -------------------- |
+| `fib(42)`   | 1.553 s ±  0.023 s  | 545.1 ms ±   7.0 ms  | -           | -           | -           | -       | 1.094 s ±  0.011 s  | 1.339 s ±  0.008 s   | 1.824 s ±  0.069 s    | 774.8 ms ±  18.5 ms   | 805.1 ms ±   7.1 ms  |
 
 *Mean elapsed time against 10 runs. Lower is better.*
 
@@ -25,11 +25,12 @@ All the JITs in the universe compared based on:
 ```
 Summary
   './libgccjit/toyvm ./libgccjit/fibonacci.toy 42' ran
-    1.43 ± 0.04 times faster than './gcc/fib'
-    1.49 ± 0.03 times faster than './nasm/fib'
-    2.50 ± 0.03 times faster than './gnu_lightning/fib'
-    2.87 ± 0.04 times faster than './libjit/fib'
-    3.36 ± 0.13 times faster than './myjit/fib'
+    1.42 ± 0.04 times faster than './gcc/fib'
+    1.48 ± 0.02 times faster than './nasm/fib'
+    2.01 ± 0.03 times faster than './mir/fib'
+    2.46 ± 0.03 times faster than './gnu_lightning/fib'
+    2.85 ± 0.06 times faster than './libjit/fib'
+    3.35 ± 0.13 times faster than './myjit/fib'
 ```
 
 Peformed using:

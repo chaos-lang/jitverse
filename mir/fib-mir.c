@@ -55,7 +55,7 @@ int main(void) {
     void *gen = MIR_gen(ctx, thread, func);
     uint64_t (*fibonacci)(uint64_t arg1) = (uint64_t(*)(uint64_t))gen;
 
-    printf("%lu\n", (unsigned long)fibonacci(45));
+    printf("%lu\n", (unsigned long)fibonacci(42));
 
     MIR_gen_finish(ctx);
 /*

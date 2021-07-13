@@ -48,8 +48,8 @@ bench: bench-fib
 bench-fib:
 	hyperfine --warmup 3 \
 		'./libjit/fib' \
-		'./mir/fib' \
 		'./libgccjit/toyvm ./libgccjit/fibonacci.toy 42' \
+		'./mir/fib' \
 		'./gnu_lightning/fib' \
 		'./myjit/fib' \
 		'./gcc/fib' \
@@ -60,9 +60,10 @@ validate: validate-fib
 
 validate-fib:
 	echo "fib(42)" && \
-	./libjit/fib \
+	./libjit/fib && \
 	./libgccjit/toyvm ./libgccjit/fibonacci.toy 42 && \
+	./mir/fib && \
 	./gnu_lightning/fib && \
-	./myjit/fib \
+	./myjit/fib && \
 	./gcc/fib && \
 	./nasm/fib
